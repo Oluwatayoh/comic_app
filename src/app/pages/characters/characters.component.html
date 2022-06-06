@@ -1,0 +1,56 @@
+<div class="container">
+  <h2>Characters</h2>
+  <div class="search-section" style="justify-content: space-between">
+    <div class="col-4">
+      <input id="searchInput" [(ngModel)]="filter" class="form-control form-control-bordered history-search-text"
+        type="text" placeholder="search..." />
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="" scope="col">Image</th>
+          <th class="" scope="col">Name</th>
+          <th class="" scope="col"> Species
+          </th>
+          <th class="" scope="col">Gender</th>
+          <th class="" scope="col">Origin</th>
+          <th class="" scope="col">Location</th>
+          <th class="" scope="col">Episodes</th>
+          <!-- <th scope="col"></th> -->
+        </tr>
+      </thead>
+      <tbody id="myUL" *ngFor="let character of char | paginate : config | searchPipe: filter; let i = index">
+        <tr class="tr">
+          <td>
+            <img class="img_" src={{character.image}} alt="{{character.name}}">
+          </td>
+          <td class="">
+            <div class="name_sub">
+              {{ character.name.toUpperCase() }}
+            </div>
+          </td>
+          <td class="">{{character.species}}
+          </td>
+          <td class="">
+            {{character.gender}}
+          </td>
+          <td class="">{{character.origin?.name}}
+          </td>
+
+          <td class="">{{character.location?.name}}
+          </td>
+          <td class="">{{character.episode?.length}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <pagination-controls *ngIf="char.length > 5" style="float: right; margin-top: 10px;"
+      (pageChange)="pageChanged($event)">
+    </pagination-controls>
+  </div>
+</div>

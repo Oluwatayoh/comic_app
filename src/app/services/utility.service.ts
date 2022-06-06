@@ -12,33 +12,6 @@ declare var $: any;
 export class UtilityService {
   constructor(private toastr: ToastrService) {}
 
-  showSuccess(message: any, title: any) {
-    Swal.fire({
-      icon: 'success',
-      title: title,
-      text: message,
-      showConfirmButton: false
-      })
-  }
-
-  showError(message: any, title: any) {
-    Swal.fire({
-      icon: 'error',
-      title: title,
-      text: message,
-      showConfirmButton: false
-      })
-    // this.toastr.error(message, title);
-  }
-
-  showInfo(message: any, title: any) {
-    this.toastr.info(message, title);
-  }
-
-  showWarning(message: any, title: any) {
-    this.toastr.warning(message, title);
-  }
-
   showLoading(): void {
     $('#loading-overlay').show();
   }

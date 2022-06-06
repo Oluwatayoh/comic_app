@@ -9,15 +9,6 @@ import { UtilityService } from './services/utility.service';
 })
 export class AppComponent {
   constructor(private router: Router, private util: UtilityService) {}
-  title = 'intelliveer';
-  hasSession: boolean = false;
 
-  ngOnInit() {
-    if (sessionStorage.getItem('user') == null) {
-      this.router.navigate(['/login']);
-    } else {
-      this.hasSession = true;
-      this.router.navigate(['/home']);
-    }
-  }
+  ngOnInit() {}
 }

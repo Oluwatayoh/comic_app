@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Locations</h2>
+  <div class="search-section" style="justify-content: space-between">
+    <div class="col-4">
+      <input id="searchInput" [(ngModel)]="filter" class="form-control form-control-bordered history-search-text"
+        type="text" placeholder="search..." />
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="" scope="col">S/N</th>
+          <th class="" scope="col">Name</th>
+          <th class="" scope="col">Type</th>
+          <th class="" scope="col">Dimension</th>
+          <th class="" scope="col">Residents</th>
+          <!-- <th scope="col"></th> -->
+        </tr>
+      </thead>
+      <tbody id="myUL" *ngFor="let location of lca | paginate : config | searchPipe: filter; let i = index">
+        <tr class="tr">
+          <td>
+            {{i + 1}}
+          </td>
+          <td class="">
+            <div class="name_sub">
+              {{ location.name.toUpperCase() }}
+            </div>
+          </td>
+
+          <td class="">
+            {{location.type}}
+          </td>
+
+          <td class="">{{location.dimension}}
+          </td>
+          <td class="">{{location.residents?.length}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <pagination-controls *ngIf="lca.length > 5" style="float: right; margin-top: 10px;"
+      (pageChange)="pageChanged($event)">
+    </pagination-controls>
+  </div>
+</div>

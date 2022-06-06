@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Episodes</h2>
+  <div class="search-section" style="justify-content: space-between">
+    <div class="col-4">
+      <input id="searchInput" [(ngModel)]="filter" class="form-control form-control-bordered history-search-text"
+        type="text" placeholder="search..." />
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="" scope="col">S/N</th>
+          <th class="" scope="col">Name</th>
+          <th class="" scope="col">Episode</th>
+          <th class="" scope="col">Release Date</th>
+          <th class="" scope="col">Characters</th>
+          <!-- <th scope="col"></th> -->
+        </tr>
+      </thead>
+      <tbody id="myUL" *ngFor="let episode of epi | paginate : config | searchPipe: filter; let i = index">
+        <tr class="tr">
+          <td>
+            {{i + 1}}
+          </td>
+          <td class="">
+            <div class="name_sub">
+              {{ episode.name.toUpperCase() }}
+            </div>
+          </td>
+
+          <td class="">
+            {{episode.episode}}
+          </td>
+
+          <td class="">{{episode.air_date}}
+          </td>
+          <td class="">{{episode.characters?.length}}
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <pagination-controls *ngIf="epi.length > 5" style="float: right; margin-top: 10px;"
+      (pageChange)="pageChanged($event)">
+    </pagination-controls>
+  </div>
+</div>
